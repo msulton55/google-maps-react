@@ -11,7 +11,7 @@ const MapContainer = (props) => {
   const [distance, setDistance] = useState()
 
   useEffect(() => {
-    console.clear()
+    console.log("MapContainer render")
     console.log("Source coordinate -> " + JSON.stringify(sourceCoordinate))
     console.log("Current coordinate -> " + JSON.stringify(currentCoordinate))
     console.log("Distance from current to source -> " + distance)
@@ -22,7 +22,6 @@ const MapContainer = (props) => {
       firstUpdate.current = false
       return
     }
-    console.clear()
     console.log("current coordinate -> " + JSON.stringify(currentCoordinate))
     console.log("Distance from current to source -> " + distance)
     if (distance < 100)
@@ -31,26 +30,30 @@ const MapContainer = (props) => {
       console.log("No point")
   }, [distance])
 
-  const clickHandler = (x, y, z) => {
+  const mapClickHandler = (x, y, z) => {
     let tempDistance = 0
     let currentLat = z.latLng.lat()
     let currentLng = z.latLng.lng()  
 
+    console.clear()
     setCurrentCoordinate({lat: currentLat, lng: currentLng})
     tempDistance =  Haversin(currentLat, currentLng, sourceCoordinate.lat, sourceCoordinate.lng)
     setDistance(tempDistance)
+  }
+
+  const markerClickHandler = () => {
+    setCurrentCoordinate(undefined)
   }
 
   return (
     <Map google={props.google}
         zoom={4.25}
         initialCenter={{lat: 54.5260, lng: 15.2551}}
-        onClick={clickHandler}
+        onClick={mapClickHandler}
         onReady={MapConfig}>
 
       <Marker position={sourceCoordinate} />
-      {currentCoordinate !== undefined ? <Marker position={currentCoordinate} /> : <div />}
-      
+      {currentCoordinate !== undefined ? <Marker position={currentCoordinate} onClick={markerClickHandler} /> : <div />}
 
     </Map>
   )
