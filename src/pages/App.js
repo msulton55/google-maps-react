@@ -2,8 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import './App.css';
 import SidebarLayout from '../layouts/SidebarLayout/index';
@@ -12,7 +11,6 @@ import MapContainer from '../components/GoogleMaps/MapContainer/index';
 import Button from '../components/Button/index';
 
 const App = () => {
-
   const scopeStyle = {
     alignItems: "center"
   }
@@ -22,12 +20,7 @@ const App = () => {
       <div className="container-fluid">
         <div className="row" style={scopeStyle}>
           <SidebarLayout>
-            <Link to="/">
-              <Button>Map</Button>
-            </Link>
-            <Link to="/about-me">
-              <Button>About Me</Button>
-            </Link>
+            <Button lists={["Map", "About Me"]} />
           </SidebarLayout>
 
           <MainLayout>
