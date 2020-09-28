@@ -15,6 +15,8 @@ const App = () => {
     alignItems: "center"
   }
 
+  console.log("App render")
+
   return (
     <Router>
       <div className="container-fluid">
@@ -30,6 +32,7 @@ const App = () => {
               </Route>
               <Route path="/about-me">
                 <h1>test</h1>
+                {console.log("About-me Render")}
               </Route>
             </Switch>
           </MainLayout>

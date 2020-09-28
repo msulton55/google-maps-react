@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Button = (props) => {
+
+  console.log("Button render")
   return (
     <div className="list-group">
       {props.lists.map((list, index) => {

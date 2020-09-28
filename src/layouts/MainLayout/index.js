@@ -6,6 +6,8 @@ const MainLayout = (props) => {
     position: "unset"
   }
 
+  console.log("MainLayout render")
+
   return (
     <div className="col-md-10" style={scopeStyle}>
       {props.children}
