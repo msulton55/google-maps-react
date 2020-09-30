@@ -7,7 +7,7 @@ const Button = (props) => {
   return (
     <div className="list-group">
       {props.lists.map((list, index) => {
-          if (list === "Map")
+          if (list === "Main map")
             return (
               <Link to="/" key="index">
                 <a className="list-group-item list-group-item-action" onClick={props.option}>
@@ -17,7 +17,7 @@ const Button = (props) => {
             )
           else 
             return (
-              <Link to="/about-me" key={index}>
+              <Link to="/how-to-play" key={index}>
                 <a className="list-group-item list-group-item-action" key={index} onClick={props.option}>
                   {list}
                 </a>
