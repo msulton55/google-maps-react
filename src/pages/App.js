@@ -4,25 +4,29 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import './App.css';
 import SidebarLayout from '../layouts/SidebarLayout/index';
 import MainLayout from '../layouts/MainLayout/index';
 import MapContainer from '../components/GoogleMaps/MapContainer/index';
 import Button from '../components/Button/index';
+import StatusInfo from '../components/StatusInfo/index';
+import CoordinateContextProvider from '../context/CoordinateContext';
+import DistanceContextProvider from '../context/DistanceContext';
 
 const App = () => {
-  const scopeStyle = {
-    alignItems: "center"
-  }
-
   console.log("App render")
 
   return (
     <Router>
       <div className="container-fluid">
-        <div className="row" style={scopeStyle}>
+        <div className="row align-items-center">
           <SidebarLayout>
-            <Button lists={["Map", "About Me"]} />
+            <h1 className="mb-5 text-center">Click Location Game</h1>
+            <Button lists={["Main map", "How to play"]} />
+            <CoordinateContextProvider>
+              <DistanceContextProvider>
+                <StatusInfo />
+              </DistanceContextProvider>
+            </CoordinateContextProvider>
           </SidebarLayout>
 
           <MainLayout>
